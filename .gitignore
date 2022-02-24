@@ -1,6 +1,14 @@
 # Prerequisites
 *.d
 
+# Ignore Python build stuff
+**__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore any build folders
+**build
+
 # Compiled Object files
 *.slo
 *.lo

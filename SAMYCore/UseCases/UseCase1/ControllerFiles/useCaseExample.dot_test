@@ -1,0 +1,36 @@
+digraph {
+0 [label="LightBarrierSensor == Detection"];
+1 [label="(1, 0, 0, 'None', 'None', 'None', 'None')"];
+0 -> 1 [label="True"];
+2 [label="Cylinder_CurrentState"];
+3 [label="(0, 1, 0, 'None', 'None', 'None', 'None')"];
+2 -> 3 [label="{Halted,\nSuspended,\nReady}"];
+4 [label="CamaraDetection"];
+5 [label="(0, 1, 1, 'None', 'None', 'None', 'None')"];
+4 -> 5 [label="'None'"];
+6 [label="Robot1_CurrentState"];
+7 [label="CamaraDetection"];
+8 [label="(0, 1, 0, 'PickAndPlace', 'Part1', 'None', 'None')"];
+7 -> 8 [label="Part1"];
+9 [label="(0, 1, 0, 'PickAndPlace', 'Part2', 'None', 'None')"];
+7 -> 9 [label="Part2"];
+10 [label="(0, 1, 0, 'PickAndPlace', 'Part3', 'None', 'None')"];
+7 -> 10 [label="Part3"];
+6 -> 7 [label="Ready"];
+11 [label="Robot2_CurrentState"];
+12 [label="CamaraDetection"];
+13 [label="(0, 1, 0, 'None', 'None', 'PickAndPlace', 'Part1')"];
+12 -> 13 [label="Part1"];
+14 [label="(0, 1, 0, 'None', 'None', 'PickAndPlace', 'Part2')"];
+12 -> 14 [label="Part2"];
+15 [label="(0, 1, 0, 'None', 'None', 'PickAndPlace', 'Part3')"];
+12 -> 15 [label="Part3"];
+11 -> 12 [label="Ready"];
+16 [label="(0, 0, 0, 'None', 'None', 'None', 'None')"];
+11 -> 16 [label="{Halted,\nSuspended,\nRunning}"];
+6 -> 11 [label="{Halted,\nSuspended,\nRunning}"];
+4 -> 6 [label="{Part1,\nPart2,\nPart3}"];
+2 -> 4 [label="Running"];
+0 -> 2 [style="dashed", label="False"];
+
+}
