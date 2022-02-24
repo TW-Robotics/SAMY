@@ -1,0 +1,129 @@
+How to proceed in order to be able of using custom unions in OPC UA:
+
+#1 Create the custom union data type in the xml model design format
+
+#2 Compile the model design file
+
+#3 Modify the .bsd generated file to add the Switchfields: Example
+<opc:TypeDictionary
+  xmlns:opc="http://opcfoundation.org/BinarySchema/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ua="http://opcfoundation.org/UA/"
+  xmlns:tns="https://crcl.org"
+  DefaultByteOrder="LittleEndian"
+  TargetNamespace="https://crcl.org"
+>
+  <opc:Import Namespace="http://opcfoundation.org/UA/" Location="Opc.Ua.BinarySchema.bsd"/>
+
+  <opc:StructuredType Name="Uni" BaseType="ua:Union">
+    <opc:Documentation>Fraction structure</opc:Documentation>
+    <opc:Field Name="switchField" TypeName="opc:UInt32" />
+    <opc:Field SwitchField="switchField" SwitchValue="1" Name="optionA" TypeName="opc:Int16" />
+    <opc:Field SwitchField="switchField" SwitchValue="2" Name="optionB" TypeName="opc:String" />
+  </opc:StructuredType>
+
+</opc:TypeDictionary>
+
+#4 Manually modify the UA NodeSet (NodeSet2.xml) in order to make it valid. For that, one would have to do two things. 
+	#4.1 First of all modify the unions structure by adding the IsUnion attribute. Example:
+	  <UADataType NodeId="ns=1;i=15001" BrowseName="1:Uni">
+    <DisplayName>Uni</DisplayName>
+    <Description>Fraction structure</Description>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">i=12756</Reference>
+    </References>
+    <Definition Name="1:Uni" IsUnion="true">
+      <Field Name="switchField" DataType="i=7">
+        <Description>Uni Switchfield</Description>
+      </Field>
+      <Field Name="optionA" DataType="i=4">
+        <Description>Option A</Description>
+      </Field>
+      <Field Name="optionB" DataType="i=12">
+        <Description>Option B</Description>
+      </Field>
+    </Definition>
+  </UADataType>
+
+  #4.2 Then you will have to modify the OPC UA Binary Schema (and eventually also the xml schema) describing the data types encoding variable that is added by the compiler, since the nodeset compiler does not support at the moment unions. For this purpose, take the corrected .bsd file, encode it in base64, and modify the following variable node in the NodeSet2.xml file.
+    <UAVariable NodeId="ns=1;i=15003" BrowseName="1:CRCL" SymbolicName="CRCL_BinarySchema" DataType="ByteString">
+    <DisplayName>CRCL</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=15005</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=15006</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15007</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">i=93</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=72</Reference>
+    </References>
+    <Value>
+      <ByteString xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">PG9wYzpUeXBlRGljdGlvbmFyeQ0KICB4bWxuczpvcGM9Imh0dHA6Ly9vcGNmb3VuZGF0aW9uLm9y
+Zy9CaW5hcnlTY2hlbWEvIg0KICB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1M
+U2NoZW1hLWluc3RhbmNlIg0KICB4bWxuczp1YT0iaHR0cDovL29wY2ZvdW5kYXRpb24ub3JnL1VB
+LyINCiAgeG1sbnM6dG5zPSJodHRwczovL2NyY2wub3JnIg0KICBEZWZhdWx0Qnl0ZU9yZGVyPSJM
+aXR0bGVFbmRpYW4iDQogIFRhcmdldE5hbWVzcGFjZT0iaHR0cHM6Ly9jcmNsLm9yZyINCj4NCiAg
+PG9wYzpJbXBvcnQgTmFtZXNwYWNlPSJodHRwOi8vb3BjZm91bmRhdGlvbi5vcmcvVUEvIiBMb2Nh
+dGlvbj0iT3BjLlVhLkJpbmFyeVNjaGVtYS5ic2QiLz4NCg0KICA8b3BjOlN0cnVjdHVyZWRUeXBl
+IE5hbWU9IlVuaSIgQmFzZVR5cGU9InVhOlVuaW9uIj4NCiAgICA8b3BjOkRvY3VtZW50YXRpb24+
+RnJhY3Rpb24gc3RydWN0dXJlPC9vcGM6RG9jdW1lbnRhdGlvbj4NCiAgICA8b3BjOkZpZWxkIE5h
+bWU9InN3aXRjaEZpZWxkIiBUeXBlTmFtZT0ib3BjOlVJbnQzMiIgLz4NCiAgICA8b3BjOkZpZWxk
+IE5hbWU9Im9wdGlvbkEiIFR5cGVOYW1lPSJvcGM6SW50MTYiIC8+DQogICAgPG9wYzpGaWVsZCBO
+YW1lPSJvcHRpb25CIiBUeXBlTmFtZT0ib3BjOlN0cmluZyIgLz4NCiAgPC9vcGM6U3RydWN0dXJl
+ZFR5cGU+DQoNCjwvb3BjOlR5cGVEaWN0aW9uYXJ5Pg==</ByteString>
+    </Value>
+  </UAVariable>
+
+Note that this only fixes the OPC UA Binary Schema. Hence, when retrieven the DataTypes from the server, it must be done through this variable node. The XML description of the data types has not been fixed!! It should be possible to do it, but there is very little documentation regarding xml, and OPC UA Binary Schema is much more supported.
+  
+#5 Correct the python nodeset_compiler (for open62541) for the unions (one has to modify one line [from cero to 1] in one file, so the generated C structures are right.
+
+
+With these steps should be enough to fix it
+
+
+
+
+
+
+
+
+
+
+
+
+#6 Compile everything
+
+#7 Generate the byte array that encodes the data structures information using the .bdf (OPC Binary Schema) and converting it into C bytes with the following python script:
+
+import re
+
+def generateByteStringCode(value, valueName, global_var_code):
+    if isinstance(value, str):
+        # PY3 returns a byte array for b64decode, while PY2 returns a string.
+        # Therefore convert it to bytes
+        asciiarray = bytearray()
+        asciiarray.extend(value)
+        asciiarray = list(asciiarray)
+    else:
+        asciiarray = list(value)
+
+    #print("generateByteStringCode value:     ",value) #DELETE
+    asciiarraystr = str(asciiarray).rstrip(']').lstrip('[')
+    cleanValueName = re.sub(r"->", "__", re.sub(r"\.", "_", valueName))
+    global_var_code = "static const UA_Byte {cleanValueName}_byteArray[{len}] = {{{data}}};".format(
+        len=len(asciiarray), data=asciiarraystr, cleanValueName=cleanValueName
+    )
+    print("generateByteStringCode global_var_code:     ", global_var_code) #DELETE
+
+
+value = '<opc:TypeDictionary\r\n  xmlns:opc="http://opcfoundation.org/BinarySchema/"\r\n  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\r\n  xmlns:ua="http://opcfoundation.org/UA/"\r\n  xmlns:tns="https://crcl.org"\r\n  DefaultByteOrder="LittleEndian"\r\n  TargetNamespace="https://crcl.org"\r\n>\r\n  <opc:Import Namespace="http://opcfoundation.org/UA/" Location="Opc.Ua.BinarySchema.bsd"/>\r\n\r\n  <opc:StructuredType Name="Uni" BaseType="ua:Union">\r\n    <opc:Documentation>Fraction structure</opc:Documentation>\r\n    <opc:Field Name="switchField" TypeName="opc:UInt32" />\r\n    <opc:Field SwitchField="switchField" SwitchValue="1" Name="optionA" TypeName="opc:Int16" />\r\n    <opc:Field SwitchField="switchField" SwitchValue="2" Name="optionB" TypeName="opc:String" />\r\n  </opc:StructuredType>\r\n\r\n</opc:TypeDictionary>'
+
+
+global_var_code = ""
+
+valueName = "testName"
+
+generateByteStringCode(value, valueName, global_var_code )
+
+#8 Paste the new array of bytes in the corresponding generated file (namespace_nameOfTheNamesPace_generated.c)
+
+#9 Recompile
