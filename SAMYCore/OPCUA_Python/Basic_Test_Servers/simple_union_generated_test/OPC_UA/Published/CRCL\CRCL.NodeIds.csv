@@ -1,0 +1,6 @@
+CRCL_BinarySchema,15003,Variable
+CRCL_XmlSchema,15011,Variable
+Uni,15001,DataType
+Uni_Encoding_DefaultBinary,15002,Object
+Uni_Encoding_DefaultJson,15018,Object
+Uni_Encoding_DefaultXml,15010,Object
