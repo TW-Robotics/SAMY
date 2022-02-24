@@ -1,0 +1,66 @@
+Robots:
+  - Robot:
+      Name: RobotABB
+      ID: 1234
+      Address: "192.168.8.24:3300"
+      OPCUARoboticsFile: RobotABB.xml
+      Skills:
+         - MoveToWithSpeed
+         - SetEndEffectorSkill
+         - PickSkill
+         - PickAndPlaceSkill
+  - Robot:
+      Name: RobotUR5
+      ID: 12344
+      Address: "192.168.8.24:3001"
+      OPCUARoboticsFile: RobotUR5.xml
+      Skills:
+         - MoveToWithSpeed
+         - SetEndEffectorSkill
+         - PickSkill
+         - PickAndPlaceSkill
+  - Robot:
+      Name: RobotUR5_2
+      ID: 123445
+      Address: "192.168.8.24:3002"
+      OPCUARoboticsFile: RobotUR5.xml
+      Skills:
+         - MoveToWithSpeed
+         - SetEndEffectorSkill
+         - PickSkill
+         - PickAndPlaceSkill
+         - 3DPrinting
+         - Drilling
+  - Robot:
+      Name: Robotiq
+      ID: 123446
+      Address: "192.168.8.24:3020"
+      OPCUARoboticsFile: RobotUR5.xml
+      Skills:
+         - MoveToWithSpeed
+         - PickSkill
+  - Robot:
+      Name: Extruder
+      ID: 123447
+      Address: "192.168.8.24:30050"
+      OPCUARoboticsFile: RobotUR5.xml
+      Skills:
+         - MoveToWithSpeed
+         - SetEndEffectorSkill
+         - PickSkill
+         - PickAndPlaceSkill
+         - PickAndPlaceSkill2
+         - Drilling
+         - 3DPrinting
+  - Robot:
+      Name: KukaIiwa
+      ID: 123448
+      Address: "192.168.8.24:3200"
+      OPCUARoboticsFile: RobotUR5.xml
+      Skills:
+         - MoveToWithSpeed
+         - SetEndEffectorSkill
+         - PickSkill
+         - PickAndPlaceSkill
+         - Drilling
+         - 3DPrinting

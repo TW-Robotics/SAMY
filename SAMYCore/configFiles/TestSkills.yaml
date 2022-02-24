@@ -1,0 +1,147 @@
+FundamentalSkills: # Fundamental skills are only composed by CRCL commands
+  - FundamentalSkill:
+      SkillName: InitCanonSkill
+      CRCLCommands:
+        - InitCanon
+  - FundamentalSkill:
+      SkillName: EndCanonSkill
+      CRCLCommands:
+        - EndCanon
+  - FundamentalSkill:
+      SkillName: MessageSkill
+      CRCLCommands:
+        - Message
+  - FundamentalSkill:
+      SkillName: MoveToSkill
+      CRCLCommands:
+        - MoveTo
+  - FundamentalSkill:
+      SkillName: MoveScrewSkill
+      CRCLCommands:
+        - MoveScrew
+  - FundamentalSkill:
+      SkillName: MoveThroughToSkill
+      CRCLCommands:
+        - MoveThroughTo
+  - FundamentalSkill:
+      SkillName: DwellSkill
+      CRCLCommands:
+        - Dwell
+  - FundamentalSkill:
+      SkillName: ActuateJointsSkill
+      CRCLCommands:
+        - ActuateJoints
+  - FundamentalSkill:
+      SkillName: ConfigureJointReportsSkill
+      CRCLCommands:
+        - ConfigureJointReports
+  # - FundamentalSkill:
+  #     SkillName: ConfigureJointReportSkill
+  #     CRCLCommands:
+  #       - ConfigureJointReport
+  - FundamentalSkill:
+      SkillName: SetDefaultJointPositionsTolerancesSkill
+      CRCLCommands:
+        - SetDefaultJointPositionsTolerances
+  - FundamentalSkill:
+      SkillName: GetStatusSkill
+      CRCLCommands:
+        - GetStatus
+  - FundamentalSkill:
+      SkillName: CloseToolChangerSkill
+      CRCLCommands:
+        - CloseToolChanger
+  - FundamentalSkill:
+      SkillName: OpenToolChangerSkill
+      CRCLCommands:
+        - OpenToolChanger
+  - FundamentalSkill:
+      SkillName: SetRobotParametersSkill
+      CRCLCommands:
+        - SetRobotParameters
+  - FundamentalSkill:
+      SkillName: SetEndeffectorParametersSkill
+      CRCLCommands:
+        - SetEndeffectorParameters
+  - FundamentalSkill:
+      SkillName: SetEndeffectorSkill
+      CRCLCommands:
+        - SetEndeffector
+  - FundamentalSkill:
+      SkillName: SetTransAccelSkill
+      CRCLCommands:
+        - SetTransAccel
+  - FundamentalSkill:
+      SkillName: SetTransSpeedSkill
+      CRCLCommands:
+        - SetTransSpeed
+  - FundamentalSkill:
+      SkillName: SetRotAccelSkill
+      CRCLCommands:
+        - SetRotAccel
+  - FundamentalSkill:
+      SkillName: SetRotSpeedSkill
+      CRCLCommands:
+        - SetRotSpeed
+  - FundamentalSkill:
+      SkillName: SetAngleUnitsSkill
+      CRCLCommands:
+        - SetAngleUnits
+  - FundamentalSkill:
+      SkillName: SetEndPoseToleranceSkill
+      CRCLCommands:
+        - SetEndPoseTolerance
+  - FundamentalSkill:
+      SkillName: SetForceUnitsSkill
+      CRCLCommands:
+        - SetForceUnits
+  - FundamentalSkill:
+      SkillName: SetIntermediatePoseToleranceSkill
+      CRCLCommands:
+        - SetIntermediatePoseTolerance
+  - FundamentalSkill:
+      SkillName: SetLengthUnitsSkill
+      CRCLCommands:
+        - SetLengthUnits
+  - FundamentalSkill:
+      SkillName: SetMotionCoordinationSkill
+      CRCLCommands:
+        - SetMotionCoordination
+  - FundamentalSkill:
+      SkillName: SetTorqueUnitsSkill
+      CRCLCommands:
+        - SetTorqueUnits
+  - FundamentalSkill:
+      SkillName: StopMotionSkill
+      CRCLCommands:
+        - StopMotion
+  - FundamentalSkill:
+      SkillName: ConfigureStatusReportSkill
+      CRCLCommands:
+        - ConfigureStatusReport
+  - FundamentalSkill:
+      SkillName: EnableSensorSkill
+      CRCLCommands:
+        - EnableSensor
+  - FundamentalSkill:
+      SkillName: DisableSensorSkill
+      CRCLCommands:
+        - DisableSensor
+  - FundamentalSkill:
+      SkillName: EnableGripperSkill
+      CRCLCommands:
+        - EnableGripper
+  - FundamentalSkill:
+      SkillName: DisableGripperSkill
+      CRCLCommands:
+        - DisableGripper
+  - FundamentalSkill:
+      SkillName: EnableRobotParameterStatusSkill
+      CRCLCommands:
+        - EnableRobotParameterStatus
+  - FundamentalSkill:
+      SkillName: DisableRobotParameterStatusSkill
+      CRCLCommands:
+        - DisableRobotParameterStatus
+
+ComplexSkills: # Complex Skills can use previously defined fundamental and complex skills

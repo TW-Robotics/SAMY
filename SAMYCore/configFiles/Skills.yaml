@@ -1,0 +1,117 @@
+FundamentalSkills: # Fundamental skills are only composed by CRCL commands
+   - FundamentalSkill:
+         SkillName: TestSkill
+         CRCLCommands:
+             - InitCanon
+             - EndCanon
+             - Message
+             - MoveTo
+             - MoveScrew
+             - MoveThroughTo
+             - Dwell
+             - ActuateJoints
+             - ConfigureJointReports
+             - SetDefaultJointPositionsTolerances
+             - GetStatus
+             - CloseToolChanger
+             - OpenToolChanger
+             - SetRobotParameters
+             - SetEndeffectorParameters
+             - SetEndeffector
+             - SetTransAccel
+             - SetTransSpeed
+             - SetRotAccel
+             - SetRotSpeed
+             - SetAngleUnits
+             - SetEndPoseTolerance
+             - SetForceUnits
+             - SetIntermediatePoseTolerance
+             - SetLengthUnits
+             - SetMotionCoordination
+             - SetTorqueUnits
+             - StopMotion
+             - ConfigureStatusReport
+             - EnableSensor
+             - DisableSensor
+             - EnableGripper
+             - DisableGripper
+             - EnableRobotParameterStatus
+             - DisableRobotParameterStatus
+   - FundamentalSkill:
+         SkillName: SimpleMove
+         CRCLCommands:
+             - MoveTo
+             - SetRotAccel
+             - SetTransAccel
+             - SetTransSpeed
+             - SetRotAccel
+             - SetRotSpeed
+   - FundamentalSkill:
+         SkillName: MoveToWithSpeed
+         CRCLCommands:
+             - SetTransSpeed
+             - MoveTo
+             - SetRotAccel
+             - SetTransAccel
+             - SetTransSpeed
+             - SetRotAccel
+             - SetRotSpeed
+   - FundamentalSkill:
+         SkillName: SetEndEffectorSkill
+         CRCLCommands:
+             - SetEndEffector
+             - SetRotAccel
+             - SetTransAccel
+             - SetTransSpeed
+             - SetRotAccel
+             - SetRotSpeed
+ComplexSkills: # Complex Skills can use previously defined fundamental and complex skills
+   - ComplexSkill:
+         SkillName: PickSkill
+         CRCLCommands_And_PreviousSkills:
+             - MoveToWithSpeed
+             - SetEndEffectorSkill
+             - MoveToWithSpeed
+             - MoveToWithSpeed
+             - SetEndEffectorSkill
+             - MoveToWithSpeed
+   - ComplexSkill:
+         SkillName: PickAndPlaceSkill
+         CRCLCommands_And_PreviousSkills:
+             - PickSkill
+             - MoveToWithSpeed
+             - MoveToWithSpeed
+             - SetEndEffectorSkill
+             - MoveToWithSpeed
+             - MoveToWithSpeed
+             - MoveToWithSpeed
+   - ComplexSkill:
+         SkillName: PickAndPlaceSkill2
+         CRCLCommands_And_PreviousSkills:
+             - PickSkill
+             - MoveToWithSpeed
+             - MoveToWithSpeed
+             - PickAndPlaceSkill
+             - MoveToWithSpeed
+             - MoveToWithSpeed
+             - PickAndPlaceSkill
+   - ComplexSkill:
+         SkillName: Drilling
+         CRCLCommands_And_PreviousSkills:
+             - PickSkill
+             - MoveToWithSpeed
+             - PickAndPlaceSkill2
+             - SetEndEffectorSkill
+             - MoveToWithSpeed
+             - MoveToWithSpeed
+             - PickSkill
+   - ComplexSkill:
+         SkillName: 3DPrinting
+         CRCLCommands_And_PreviousSkills:
+             - PickSkill
+             - MoveToWithSpeed
+             - Drilling
+             - SetEndEffectorSkill
+             - MoveToWithSpeed
+             - PickAndPlaceSkill2
+             - Drilling
