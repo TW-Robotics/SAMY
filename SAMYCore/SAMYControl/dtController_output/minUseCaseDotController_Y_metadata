@@ -1,0 +1,10 @@
+{   'categorical': [0],
+    'category_names': {   0: [   "'RobotUR5_PickAndPlaceSkill_9:Move-UR5-Place-CaseBottom-Above_11:Move-UR5-Place-CaseBottom_14:Move-UR5-Place-CaseBottom-Above'",
+                                 "'RobotUR5_pass'",
+                                 "'RobotUR5_SimpleMove_0:Move-UR5-Home'"]},
+    'max': None,
+    'min': None,
+    'num_flattened': None,
+    'num_rows': None,
+    'step_size': None,
+    'variables': ['u_0_cat']}

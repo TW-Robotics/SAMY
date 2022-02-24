@@ -1,0 +1,10 @@
+digraph {
+0 [label="Robot_RobotUR5_CurrentState"];
+1 [label="'RobotUR5_PickAndPlaceSkill_9:Move-UR5-Place-CaseBottom-Above_11:Move-UR5-Place-CaseBottom_14:Move-UR5-Place-CaseBottom-Above'"];
+0 -> 1 [label="Ready"];
+2 [label="'RobotUR5_pass'"];
+0 -> 2 [label="Running"];
+3 [label="'RobotUR5_SimpleMove_0:Move-UR5-Home'"];
+0 -> 3 [label="{Suspended,\nHalted}"];
+
+}

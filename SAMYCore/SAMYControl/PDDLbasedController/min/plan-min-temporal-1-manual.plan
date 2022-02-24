@@ -1,0 +1,6 @@
+;;!domain: samy-min-temporal
+;;!problem: samy-min-temporal-1
+0.000: (move-to-pickup r o rsrc rstart src) [12.0]
+12.001: (gripper-close-to-pickup r o rsrc src) [0.0]
+12.002: (wait-for-gripper-closed-to-pickup r o rsrc src) [5.0]
+17.003: (move-from-pickup-to-place r o rdst rsrc dst src) [8.0]

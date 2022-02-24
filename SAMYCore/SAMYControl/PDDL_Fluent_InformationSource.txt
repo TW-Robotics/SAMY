@@ -1,0 +1,17 @@
+InformationSourceDescription:
+    DataTypes:
+    - Boolean
+    - Boolean
+    - Boolean
+    - Boolean
+    - Boolean
+    - Boolean
+    - Boolean
+    - Boolean
+    - Boolean
+    - Boolean
+    - Boolean
+    - Boolean
+    - Boolean
+    - Boolean
+    InformationSourceName: PDDL_Fluents

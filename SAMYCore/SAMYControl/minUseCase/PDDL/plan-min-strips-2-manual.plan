@@ -1,0 +1,3 @@
+;;!domain: samy-min-strips
+;;!problem: samy-min-strips-2
+0.000: (move-from-pickup-to-place r o rdst rsrc dst src)

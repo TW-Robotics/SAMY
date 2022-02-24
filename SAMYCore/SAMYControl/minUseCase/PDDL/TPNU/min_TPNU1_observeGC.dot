@@ -1,0 +1,65 @@
+# http://www.graphviz.org/content/cluster
+
+digraph G {
+  graph [fontname="Arial"];
+  node [fontname="Arial" shape=circle width=0.2 label="" ];
+  edge [fontname="Arial" arrowsize = 0.5 fontsize=8];
+  rankdir=LR;
+  bgcolor=transparent;
+
+  subgraph cluster_move1 {
+    move1s -> move1e [label="[12;12]"];
+    color=darkorange;
+    label="Move To Pickup Position";
+    fontsize = 8;
+  }
+
+  subgraph cluster_move2 {
+    move2s -> move2e [label="[8;8]"];
+    color=darkorange;
+    label="Move To Place Position";
+    fontsize = 8;
+  }
+
+  subgraph cluster_close1 {
+    close1s -> close1e  [label="[ε;ε]"];
+    color=darkorange;
+    label="Close Gripper Signal";
+    fontsize = 8;
+  }
+
+  subgraph cluster_wait1 {
+    wait1s -> wait1e [label="[ε;5]"];
+    color=darkorange;
+    label="Wait For Gripper Closed";
+    fontsize = 8;
+  }
+
+  subgraph cluster_error1 {
+    error1s -> error1e [label="[ε;ε]"];
+    color=darkorange;
+    label="Error";
+    fontsize = 8;
+  }
+
+  start -> move1s [label="[ε;ε]"];
+  move1e -> close1s [label="[ε;ε]"];
+  close1e -> wait1s [label="[ε;ε]"];
+  wait1e -> choice1 [label="[ε;ε]"];
+  choice1 -> move2s [label="GC"];
+  choice1 -> error1s [label="¬ GC"];
+  move2e -> merge1 [label="[ε;ε]"];
+  error1e -> merge1 [label="[ε;ε]"];
+  merge1 -> end [label="[ε;ε]"];
+  move1e [color=cornflowerblue];
+  move2e [color=cornflowerblue];
+  close1e [color=cornflowerblue];
+  wait1e [color=cornflowerblue];
+  observegc [color=cornflowerblue style="dashed"];
+  close1e -> observegc;
+  observegc -> wait1e [label="/GC"];
+  choice1 [shape=doublecircle color=cornflowerblue];
+
+  start [shape=circle color=black style=filled width=0.2 ];
+  end [shape=doublecircle color=black style=filled width=0.2 ];
+}

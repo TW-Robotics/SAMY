@@ -1,0 +1,82 @@
+FundamentalSkills: # Fundamental skills are only composed by CRCL commands
+  - FundamentalSkill:
+      SkillName: TestSkill
+      CRCLCommands:
+        - InitCanon
+        - EndCanon
+        - Message
+        - MoveTo
+        - MoveScrew
+        - MoveThroughTo
+        - Dwell
+        - ActuateJoints
+        - ConfigureJointReports
+        - SetDefaultJointPositionsTolerances
+        - GetStatus
+        - CloseToolChanger
+        - OpenToolChanger
+        - SetRobotParameters
+        - SetEndeffectorParameters
+        - SetEndeffector
+        - SetTransAccel
+        - SetTransSpeed
+        - SetRotAccel
+        - SetRotSpeed
+        - SetAngleUnits
+        - SetEndPoseTolerance
+        - SetForceUnits
+        - SetIntermediatePoseTolerance
+        - SetLengthUnits
+        - SetMotionCoordination
+        - SetTorqueUnits
+        - StopMotion
+        - ConfigureStatusReport
+        - EnableSensor
+        - DisableSensor
+        - EnableGripper
+        - DisableGripper
+        - EnableRobotParameterStatus
+        - DisableRobotParameterStatus
+  - FundamentalSkill:
+      SkillName: SimpleMove
+      CRCLCommands:
+        - MoveTo
+  - FundamentalSkill:
+      SkillName: StartMissionSkill
+      CRCLCommands:
+        - Message
+  - FundamentalSkill:
+      SkillName: EnableComponent
+      CRCLCommands:
+        - EnableGripper
+  - FundamentalSkill:
+      SkillName: DisableComponent
+      CRCLCommands:
+        - DisableGripper
+  - FundamentalSkill:
+      SkillName: MoveToWithSpeed
+      CRCLCommands:
+        - SetTransSpeed
+        - MoveTo
+  - FundamentalSkill:
+      SkillName: SetEndEffectorSkill
+      CRCLCommands:
+        - SetEndEffector
+ComplexSkills: # Complex Skills can use previously defined fundamental and complex skills
+  - ComplexSkill:
+      SkillName: PickSkill
+      CRCLCommands_And_PreviousSkills:
+        - SetEndEffectorSkill # Open gripper
+        - MoveToWithSpeed # Move Above pick pose
+        - MoveToWithSpeed # Move to pick pose
+        - SetEndEffectorSkill # Close Gripper
+        - MoveToWithSpeed # Move above pick pose
+  - ComplexSkill:
+      SkillName: PickAndPlaceSkill
+      CRCLCommands_And_PreviousSkills:
+        - PickSkill
+        - MoveToWithSpeed # Move above place pose
+        - MoveToWithSpeed # Move to place pose
+        - SetEndEffectorSkill # open gripper
+        - MoveToWithSpeed # move above place pose
+
