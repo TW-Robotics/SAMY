@@ -1,0 +1,3 @@
+[submodule "SAMYCore"]
+	path = SAMYCore
+	url = https://github.com/TW-Robotics/SAMYCore
