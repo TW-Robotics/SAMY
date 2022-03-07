@@ -1,6 +1,0 @@
-{   'categorical': [0],
-    'category_names': {0: ['Ready', 'Running', 'Suspended', 'Halted']},
-    'max': None,
-    'min': None,
-    'step_size': None,
-    'variables': ['Robot_RobotUR5_CurrentState']}

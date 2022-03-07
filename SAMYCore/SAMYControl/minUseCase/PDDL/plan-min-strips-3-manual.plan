@@ -1,3 +1,0 @@
-;;!domain: samy-min-strips
-;;!problem: samy-min-strips-3
-0.000: (move-to-pickup r o rsrc rstart src)

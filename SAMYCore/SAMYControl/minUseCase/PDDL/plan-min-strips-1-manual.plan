@@ -1,7 +1,0 @@
-;;!domain: samy-min-strips
-;;!problem: samy-min-strips-1
-0.000: (move-to-pickup r o rsrc rstart src)
-0.001: (gripper-close-to-pickup r o rsrc src)
-0.002: (wait-for-gripper-closed-to-pickup r o rsrc src)
-0.003: (move-from-pickup-to-place r o rdst rsrc dst src)
-0.000: (move-to-pickup r o2 rsrc rstart src)
