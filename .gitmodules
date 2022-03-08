@@ -1,9 +1,0 @@
-[submodule "SAMYCore"]
-	path = SAMYCore
-	url = https://github.com/TW-Robotics/SAMYCore
-[submodule "SAMYPlugins_Templates"]
-	path = SAMYPlugins_Templates
-	url = https://github.com/TW-Robotics/SAMYPlugins_Templates
-[submodule "SAMYPlugins"]
-	path = SAMYPlugins
-	url = https://github.com/TW-Robotics/SAMYPlugins
