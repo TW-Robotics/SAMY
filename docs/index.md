@@ -19,4 +19,4 @@ To demonstrate the hardware agnostic we changed the ABB robot with a second UR5 
 
 
 # How-To
-[Create new Plugin with C++](new_plugin-cpp.md)
+[Create new Plugin with C++](new-plugin-cpp.md)
