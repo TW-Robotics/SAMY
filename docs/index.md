@@ -2,6 +2,7 @@
 We are figuring out the last details about Licensing. The submodules will be made public soon!
 
 # Demonstration Video
+[Video of UseCase](assets/SAMY_FHTW_2xUR5_UseCase.mp4)
 https://github.com/TW-Robotics/SAMY/blob/main/docs/assets/SAMY_FHTW_2xUR5_UseCase.mp4
 
 # Content
